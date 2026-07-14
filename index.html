@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amara Spa & Wellness — Stillness, Restored</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --indigo: #1E2A47;
+    --indigo-deep: #131D33;
+    --ivory: #FBF7EF;
+    --sand: #EFE6D6;
+    --ochre: #C89B4A;
+    --sage: #7C8B6F;
+    --clay: #B5623A;
+    --ink: #221F1C;
+    --ink-soft: #5B564E;
+    --line: rgba(34,31,28,0.12);
+    --radius-lg: 28px;
+    --radius-sm: 14px;
+    --shadow: 0 20px 50px -25px rgba(19,29,51,0.35);
+    --ease: cubic-bezier(.22,.9,.28,1);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0;
+    color: var(--indigo-deep);
+    letter-spacing: -0.01em;
+  }
+
+  p{ margin: 0; }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family: inherit; cursor: pointer; }
+
+  .eyebrow{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width: 20px; height: 1px;
+    background: var(--clay);
+    display: inline-block;
+  }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section{ padding: 120px 0; position: relative; }
+  @media (max-width: 768px){ section{ padding: 80px 0; } }
+
+  /* ============ ADIRE SIGNATURE MOTIF ============ */
+  /* Dot-resist pattern echoing Yoruba adire textile dyeing — used as the
+     page's recurring signature rather than generic dividers or icons. */
+  .adire-band{
+    height: 46px;
+    width: 100%;
+    background-image: radial-gradient(circle, var(--ochre) 1.6px, transparent 1.7px);
+    background-size: 16px 16px;
+    background-position: 0 center;
+    opacity: 0.55;
+  }
+  .adire-band.dark{
+    background-image: radial-gradient(circle, var(--ivory) 1.6px, transparent 1.7px);
+    background-color: var(--indigo-deep);
+    opacity: 1;
+  }
+
+  .adire-mark{
+    width: 34px; height: 34px;
+    background-image: radial-gradient(circle, var(--indigo) 2.4px, transparent 2.6px);
+    background-size: 10px 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(251,247,239,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 32px;
+    max-width: 1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
+    color: var(--indigo-deep);
+  }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{
+    font-size: 0.92rem; font-weight:500; color: var(--ink-soft);
+    transition: color .25s var(--ease);
+  }
+  .nav-links a:hover{ color: var(--clay); }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-weight: 600; font-size: 0.88rem;
+    border: 1px solid transparent;
+    transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--clay); color: var(--ivory); }
+  .btn-primary:hover{ background: var(--indigo-deep); }
+  .btn-ghost{ border-color: var(--indigo); color: var(--indigo-deep); }
+  .btn-ghost:hover{ background: var(--indigo-deep); color: var(--ivory); }
+
+  .menu-toggle{
+    display:none; background:none; border:none; flex-direction:column; gap:5px; padding:6px;
+  }
+  .menu-toggle span{ width:24px; height:2px; background: var(--indigo-deep); }
+
+  @media (max-width: 860px){
+    .nav-links{
+      position:fixed; top:66px; left:0; right:0;
+      background: var(--ivory);
+      flex-direction:column; align-items:flex-start;
+      padding: 24px 32px 32px;
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-140%);
+      transition: transform .35s var(--ease);
+      gap: 20px;
+    }
+    .nav-links.open{ transform: translateY(0); }
+    .menu-toggle{ display:flex; }
+    .nav-links .btn{ margin-top: 4px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding: 90px 0 0;
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px; align-items:center;
+    padding-bottom: 80px;
+  }
+  @media (max-width: 900px){
+    .hero-inner{ grid-template-columns: 1fr; }
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    margin: 22px 0 26px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--clay); font-weight: 500; }
+  .hero p.lede{
+    font-size: 1.12rem; color: var(--ink-soft);
+    max-width: 480px; margin-bottom: 36px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .blob-stage{
+    position: relative;
+    aspect-ratio: 4/5;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* Soft organic accents sitting behind the photo frame */
+  .blob{
+    position:absolute;
+    border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%;
+  }
+  .blob-2{
+    width: 44%; height: 44%;
+    background: var(--ochre);
+    top: -6%; right: -6%;
+    border-radius: 42% 58% 60% 40% / 55% 45% 55% 45%;
+    animation: float2 9s ease-in-out infinite;
+    z-index: 0;
+  }
+  .blob-3{
+    width: 34%; height: 34%;
+    background: var(--sand);
+    bottom: -6%; left: -8%;
+    border-radius: 55% 45% 40% 60% / 50% 60% 40% 50%;
+    z-index: 0;
+  }
+  @keyframes float2{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(12px);} }
+
+  /* ---- Hero photo frame ---- */
+  .photo-frame{
+    position: relative;
+    width: 88%; height: 92%;
+    border-radius: 62% 38% 52% 48% / 50% 58% 42% 50%;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: var(--shadow);
+    background: linear-gradient(160deg, var(--indigo), var(--indigo-deep));
+  }
+  .photo-frame img{
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  /* Shown automatically if hero-massage.jpg is missing or fails to load */
+  .photo-placeholder{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 14px; text-align:center; padding: 40px;
+    color: rgba(251,247,239,0.85);
+    background-image: radial-gradient(circle, rgba(251,247,239,0.35) 2px, transparent 2.2px);
+    background-size: 20px 20px;
+  }
+  .photo-placeholder .icon{
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 2px solid rgba(251,247,239,0.5);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .photo-placeholder p{ font-size: 0.85rem; max-width: 220px; line-height:1.5; }
+  .photo-placeholder code{
+    background: rgba(251,247,239,0.15); padding: 2px 8px; border-radius: 6px; font-size: 0.78rem;
+  }
+  .photo-frame.has-image .photo-placeholder{ display:none; }
+
+  .stats-strip{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 30px 0;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap: 20px;
+  }
+  .stat{ text-align:left; }
+  .stat b{ display:block; font-family:'Fraunces',serif; font-size: 1.9rem; color: var(--indigo-deep); }
+  .stat span{ font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* ============ PHILOSOPHY ============ */
+  .philosophy{ background: var(--ivory); }
+  .phil-grid{
+    display:grid; grid-template-columns: 0.85fr 1.15fr;
+    gap: 70px; align-items:center;
+  }
+  @media (max-width: 900px){ .phil-grid{ grid-template-columns:1fr; } }
+  .phil-art{
+    aspect-ratio: 4/5; border-radius: var(--radius-lg);
+    background: linear-gradient(160deg, var(--sand), var(--ochre) 70%);
+    position:relative; overflow:hidden;
+  }
+  .phil-art::after{
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(30,42,71,0.55) 2.6px, transparent 2.8px);
+    background-size: 20px 20px;
+    -webkit-mask-image: linear-gradient(200deg, black 15%, transparent 65%);
+    mask-image: linear-gradient(200deg, black 15%, transparent 65%);
+  }
+  .phil-text h2{ font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 16px 0 22px; }
+  .phil-text p{ color: var(--ink-soft); margin-bottom: 18px; max-width: 560px; }
+  .phil-signature{ font-family:'Fraunces', serif; font-style: italic; color: var(--indigo); margin-top: 20px; }
+
+  /* ============ RITUAL JOURNEY (real sequence — numbering earned) ============ */
+  .ritual{ background: var(--indigo-deep); color: var(--ivory); }
+  .ritual .eyebrow{ color: var(--ochre); }
+  .ritual .eyebrow::before{ background: var(--ochre); }
+  .ritual h2{ color: var(--ivory); font-size: clamp(1.9rem,3vw,2.6rem); margin: 16px 0 50px; max-width: 640px; }
+  .ritual-steps{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+  }
+  @media (max-width: 900px){ .ritual-steps{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .ritual-steps{ grid-template-columns: 1fr; } }
+  .ritual-step{
+    border-top: 1px solid rgba(251,247,239,0.25);
+    padding-top: 22px;
+  }
+  .ritual-step .num{
+    font-family:'Fraunces', serif; font-size: 0.85rem; color: var(--ochre);
+    display:block; margin-bottom: 14px; letter-spacing: 0.08em;
+  }
+  .ritual-step h4{ color: var(--ivory); font-size: 1.15rem; margin-bottom: 10px; }
+  .ritual-step p{ color: rgba(251,247,239,0.7); font-size: 0.92rem; }
+
+  /* ============ SERVICES / PRICING ============ */
+  .services{ background: var(--ivory); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap: 30px;
+    margin-bottom: 50px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size: clamp(1.9rem,3vw,2.6rem); margin-top: 16px; }
+  .section-head p{ color: var(--ink-soft); max-width: 420px; }
+
+  .price-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  @media (max-width: 700px){ .price-grid{ grid-template-columns: 1fr; } }
+
+  .price-card{
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 28px 30px;
+    display:flex; flex-direction:column; gap: 8px;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .price-card:hover{
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: transparent;
+  }
+  .price-card.featured{
+    background: var(--indigo-deep); color: var(--ivory); border-color: transparent;
+  }
+  .price-top{ display:flex; justify-content:space-between; align-items:baseline; gap: 16px; }
+  .price-top h4{ font-size: 1.15rem; }
+  .price-card.featured h4{ color: var(--ivory); }
+  .price-tag{ font-family:'Fraunces', serif; font-weight:600; font-size: 1.2rem; white-space:nowrap; color: var(--clay); }
+  .price-card.featured .price-tag{ color: var(--ochre); }
+  .price-meta{ font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+  .price-card.featured .price-meta{ color: rgba(251,247,239,0.65); }
+  .price-desc{ font-size: 0.92rem; color: var(--ink-soft); margin-top: 6px; }
+  .price-card.featured .price-desc{ color: rgba(251,247,239,0.8); }
+  .badge{
+    align-self:flex-start;
+    background: var(--ochre); color: var(--indigo-deep);
+    font-size: 0.68rem; font-weight:700; letter-spacing: 0.08em; text-transform:uppercase;
+    padding: 4px 10px; border-radius: 100px; margin-bottom: 4px;
+  }
+  .price-footnote{
+    margin-top: 34px; font-size: 0.88rem; color: var(--ink-soft);
+    display:flex; align-items:center; gap:10px;
+  }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials{ background: var(--sand); }
+  .test-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  @media (max-width: 900px){ .test-grid{ grid-template-columns:1fr; } }
+  .test-card{
+    background: var(--ivory); border-radius: var(--radius-sm); padding: 30px;
+    display:flex; flex-direction:column; gap: 18px;
+  }
+  .stars{ color: var(--clay); letter-spacing: 3px; font-size: 0.95rem; }
+  .test-card p{ color: var(--ink); font-size: 0.98rem; }
+  .test-name{ font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; }
+
+  /* ============ GALLERY (abstract, no stock imagery) ============ */
+  .gallery-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media (max-width: 760px){ .gallery-grid{ grid-template-columns: repeat(2,1fr); } }
+  .gallery-tile{
+    aspect-ratio: 1; border-radius: var(--radius-sm);
+    position:relative; overflow:hidden;
+  }
+  .gallery-tile span{
+    position:absolute; bottom:14px; left:16px;
+    font-size:0.78rem; color: var(--ivory); font-weight:600; letter-spacing:0.03em;
+  }
+  .t1{ background: linear-gradient(160deg,var(--indigo),var(--indigo-deep)); }
+  .t2{ background: linear-gradient(160deg,var(--ochre),#a8792f); }
+  .t3{ background: linear-gradient(160deg,var(--sage),#5f6d54); }
+  .t4{ background: linear-gradient(160deg,var(--clay),#8a4527); }
+  .gallery-tile::after{
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(251,247,239,0.5) 1.8px, transparent 2px);
+    background-size: 14px 14px;
+    opacity: 0.5;
+  }
+
+  /* ============ BOOKING / WHATSAPP FORM ============ */
+  .booking{ background: var(--indigo-deep); color: var(--ivory); }
+  .booking-grid{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px;
+  }
+  @media (max-width: 900px){ .booking-grid{ grid-template-columns:1fr; } }
+  .booking .eyebrow{ color: var(--ochre); }
+  .booking .eyebrow::before{ background: var(--ochre); }
+  .booking h2{ color: var(--ivory); font-size: clamp(1.9rem,3vw,2.6rem); margin: 16px 0 22px; }
+  .booking-copy p{ color: rgba(251,247,239,0.75); margin-bottom: 16px; max-width: 420px; }
+  .booking-list{ margin-top: 28px; display:flex; flex-direction:column; gap:14px; }
+  .booking-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.92rem; color: rgba(251,247,239,0.85); }
+
+  form.booking-form{
+    background: rgba(251,247,239,0.06);
+    border: 1px solid rgba(251,247,239,0.18);
+    border-radius: var(--radius-lg);
+    padding: 34px;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 560px){ form.booking-form{ grid-template-columns: 1fr; padding: 24px; } }
+  form.booking-form .full{ grid-column: 1/-1; }
+  .field label{
+    display:block; font-size: 0.78rem; letter-spacing:0.05em; text-transform:uppercase;
+    color: rgba(251,247,239,0.6); margin-bottom: 8px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%; padding: 13px 14px;
+    background: rgba(251,247,239,0.08);
+    border: 1px solid rgba(251,247,239,0.25);
+    border-radius: 10px;
+    color: var(--ivory); font-family:'Inter',sans-serif; font-size: 0.95rem;
+  }
+  .field input::placeholder, .field textarea::placeholder{ color: rgba(251,247,239,0.4); }
+  .field select option{ color: var(--ink); }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline: 2px solid var(--ochre); outline-offset: 1px;
+  }
+  textarea{ resize: vertical; min-height: 80px; }
+  .wa-submit{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background: #25D366; color: #06280f;
+    border:none; padding: 15px 20px; border-radius: 100px;
+    font-weight:700; font-size: 0.95rem;
+    transition: transform .25s var(--ease), filter .25s var(--ease);
+  }
+  .wa-submit:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+  .form-note{ grid-column:1/-1; font-size: 0.78rem; color: rgba(251,247,239,0.5); margin-top: -4px; }
+
+  /* ============ FAQ ============ */
+  .faq{ background: var(--ivory); }
+  .faq-list{ max-width: 760px; }
+  .faq-item{ border-bottom: 1px solid var(--line); }
+  .faq-q{
+    width:100%; background:none; border:none; text-align:left;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 24px 0; font-family:'Fraunces',serif; font-size: 1.1rem; color: var(--indigo-deep);
+  }
+  .faq-q .plus{ font-size: 1.4rem; color: var(--clay); transition: transform .3s var(--ease); flex-shrink:0; margin-left: 20px; }
+  .faq-item.open .faq-q .plus{ transform: rotate(45deg); }
+  .faq-a{
+    max-height:0; overflow:hidden; transition: max-height .35s var(--ease);
+    color: var(--ink-soft); font-size: 0.95rem;
+  }
+  .faq-a-inner{ padding-bottom: 24px; max-width: 600px; }
+  .faq-item.open .faq-a{ max-height: 240px; }
+
+  /* ============ FOOTER ============ */
+  footer{ background: var(--indigo-deep); color: rgba(251,247,239,0.75); padding: 70px 0 30px; }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 50px; border-bottom: 1px solid rgba(251,247,239,0.15);
+  }
+  @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+  .footer-logo{ font-family:'Fraunces',serif; font-size:1.3rem; color: var(--ivory); margin-bottom: 14px; display:flex; align-items:center; gap:12px; }
+  .footer-col h5{ color: var(--ivory); font-size: 0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom: 16px; font-family:'Inter',sans-serif; font-weight:600; }
+  .footer-col p, .footer-col li{ font-size: 0.9rem; margin-bottom: 8px; }
+  .footer-col a:hover{ color: var(--ochre); }
+  .hours-row{ display:flex; justify-content:space-between; gap: 12px; }
+  .bottom-bar{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    padding-top: 26px; font-size: 0.8rem; color: rgba(251,247,239,0.5);
+  }
+
+  /* ============ FLOATING WHATSAPP BUTTON ============ */
+  .wa-float{
+    position: fixed; bottom: 26px; right: 26px; z-index: 200;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 12px 30px -8px rgba(37,211,102,0.6);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+    50%{ box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+  }
+
+  /* ============ REVEAL ON SCROLL ============ */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="nav">
+    <div class="logo"><span class="adire-mark" aria-hidden="true"></span>Amara Spa</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#ritual">The Ritual</a>
+      <a href="#prices">Treatments &amp; Prices</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#faq">FAQ</a>
+      <a href="#booking" class="btn btn-primary">Book on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Lekki Phase 1, Lagos</span>
+        <h1>Stillness,<br><em>restored.</em></h1>
+        <p class="lede">A quiet sanctuary tucked away from Lagos traffic and noise — where every ritual begins with a warm foot soak and ends with tea, silence, and a slower heartbeat.</p>
+        <div class="hero-ctas">
+          <a href="#booking" class="btn btn-primary">Reserve your ritual</a>
+          <a href="#prices" class="btn btn-ghost">View treatments</a>
+        </div>
+      </div>
+      <div class="blob-stage">
+        <div class="blob blob-2" aria-hidden="true"></div>
+        <div class="blob blob-3" aria-hidden="true"></div>
+        <div class="photo-frame" id="heroPhotoFrame">
+          <!-- Replace hero-massage.jpg with your own photo, keeping the same filename,
+               or update the src below to match your file name. -->
+          <img src="hero-massage.jpg" alt="A client receiving a relaxing massage at Amara Spa"
+               onerror="this.style.display='none'; document.getElementById('heroPhotoFrame').classList.remove('has-image');"
+               onload="document.getElementById('heroPhotoFrame').classList.add('has-image');">
+          <div class="photo-placeholder">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
+            </div>
+            <p>Add a massage photo here — save it as <code>hero-massage.jpg</code> next to this HTML file.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats-strip reveal">
+      <div class="stat"><b>7 yrs</b><span>Serving Lagos clients</span></div>
+      <div class="stat"><b>12</b><span>Signature rituals</span></div>
+      <div class="stat"><b>4.9 / 5</b><span>Average client rating</span></div>
+      <div class="stat"><b>100%</b><span>Locally sourced oils &amp; scrubs</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="adire-band" aria-hidden="true"></div>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="philosophy" id="philosophy">
+  <div class="wrap">
+    <div class="phil-grid">
+      <div class="phil-art reveal" aria-hidden="true"></div>
+      <div class="phil-text reveal">
+        <span class="eyebrow">Our philosophy</span>
+        <h2>Care that moves at the pace of the body, not the clock.</h2>
+        <p>Amara means grace — and it's the standard every treatment is held to. We blend Yoruba herbal traditions with modern spa technique, using shea, black soap, and botanicals sourced from markets across the South-West.</p>
+        <p>No two bodies hold tension the same way, so no two sessions are identical. Your therapist reads what you need that day and shapes the ritual around it — not the other way round.</p>
+        <p class="phil-signature">— The Amara Spa team</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUAL JOURNEY ============ -->
+<section class="ritual" id="ritual">
+  <div class="wrap">
+    <span class="eyebrow reveal">How a visit unfolds</span>
+    <h2 class="reveal">Every session follows the same unhurried arc, from the door to the last cup of tea.</h2>
+    <div class="ritual-steps">
+      <div class="ritual-step reveal">
+        <span class="num">01</span>
+        <h4>Arrival &amp; consultation</h4>
+        <p>A short conversation about tension points, allergies, and pressure preference, over chilled hibiscus water.</p>
+      </div>
+      <div class="ritual-step reveal">
+        <span class="num">02</span>
+        <h4>Warm foot soak</h4>
+        <p>Ten minutes in a rosemary-infused soak to ground you before the treatment room.</p>
+      </div>
+      <div class="ritual-step reveal">
+        <span class="num">03</span>
+        <h4>The treatment</h4>
+        <p>Your chosen ritual, delivered at your pace, in a private room with dimmed light and low sound.</p>
+      </div>
+      <div class="ritual-step reveal">
+        <span class="num">04</span>
+        <h4>Tea &amp; reflection</h4>
+        <p>A closing cup of ginger-lemongrass tea in the courtyard before you re-enter the day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES / PRICES ============ -->
+<section class="services" id="prices">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Treatments &amp; prices</span>
+        <h2>Choose your ritual</h2>
+      </div>
+      <p>All prices are in Naira and include herbal tea service. Packages and gift vouchers available on request.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured reveal">
+        <span class="badge">Signature</span>
+        <div class="price-top"><h4>Signature Amara Massage</h4><span class="price-tag">₦25,000</span></div>
+        <span class="price-meta">60 minutes</span>
+        <p class="price-desc">Full-body massage blending Swedish and Yoruba techniques, finished with a shea butter seal.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Deep Tissue Massage</h4><span class="price-tag">₦35,000</span></div>
+        <span class="price-meta">90 minutes</span>
+        <p class="price-desc">Firm, focused work for chronic tension in the back, shoulders, and neck.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Hot Stone Therapy</h4><span class="price-tag">₦30,000</span></div>
+        <span class="price-meta">75 minutes</span>
+        <p class="price-desc">Heated basalt stones ease muscle stiffness while easing you into total stillness.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Aromatherapy Facial</h4><span class="price-tag">₦20,000</span></div>
+        <span class="price-meta">45 minutes</span>
+        <p class="price-desc">A gentle cleanse, steam, and essential-oil facial suited to Lagos humidity and skin type.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Body Scrub &amp; Wrap</h4><span class="price-tag">₦28,000</span></div>
+        <span class="price-meta">60 minutes</span>
+        <p class="price-desc">Coffee and black-soap exfoliation followed by a hydrating shea wrap.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Couples Ritual</h4><span class="price-tag">₦60,000</span></div>
+        <span class="price-meta">90 minutes · 2 guests</span>
+        <p class="price-desc">Side-by-side signature massages in our private double room.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Mani-Pedi Refresh</h4><span class="price-tag">₦18,000</span></div>
+        <span class="price-meta">50 minutes</span>
+        <p class="price-desc">Soak, shape, and polish for hands and feet, with a hand-massage finish.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Head &amp; Scalp Massage</h4><span class="price-tag">₦12,000</span></div>
+        <span class="price-meta">30 minutes</span>
+        <p class="price-desc">A quick reset for tension headaches and long work weeks — our most-booked add-on.</p>
+      </div>
+    </div>
+    <div class="price-footnote reveal"><span class="adire-mark" style="width:20px;height:20px;"></span> Ask about our monthly membership for two rituals a month at a fixed rate.</div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="wrap">
+    <span class="eyebrow reveal">In their words</span>
+    <h2 class="reveal" style="margin:16px 0 40px; font-size: clamp(1.9rem,3vw,2.6rem);">Clients on the ritual</h2>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>I came in tense from a work week and left feeling like a different person. The foot soak alone is worth the visit.</p>
+        <span class="test-name">— Ngozi A., regular client</span>
+      </div>
+      <div class="test-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>Booking on WhatsApp took thirty seconds and they confirmed within the hour. The hot stone session was excellent.</p>
+        <span class="test-name">— Tunde O., first-time visitor</span>
+      </div>
+      <div class="test-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>We did the couples ritual for our anniversary. Quiet, unhurried, and the tea at the end was a lovely touch.</p>
+        <span class="test-name">— Chidinma &amp; Femi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <span class="eyebrow reveal">Moments at Amara</span>
+    <h2 class="reveal" style="margin:16px 0 40px; font-size: clamp(1.9rem,3vw,2.6rem);">Textures of the space</h2>
+    <div class="gallery-grid">
+      <div class="gallery-tile t1 reveal"><span>Treatment room</span></div>
+      <div class="gallery-tile t2 reveal"><span>Herbal oils</span></div>
+      <div class="gallery-tile t3 reveal"><span>Courtyard tea</span></div>
+      <div class="gallery-tile t4 reveal"><span>Warm stones</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="adire-band dark" aria-hidden="true"></div>
+
+<!-- ============ BOOKING / WHATSAPP FORM ============ -->
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="booking-grid">
+      <div class="booking-copy reveal">
+        <span class="eyebrow">Book your visit</span>
+        <h2>Send us your details, finish it on WhatsApp.</h2>
+        <p>Fill in the form and we'll open WhatsApp with everything pre-filled — just hit send. A real person replies, usually within the hour, to confirm your slot.</p>
+        <ul class="booking-list">
+          <li><span class="adire-mark" style="width:18px;height:18px;margin-top:2px;"></span> No account or app download needed</li>
+          <li><span class="adire-mark" style="width:18px;height:18px;margin-top:2px;"></span> Reschedule anytime, free of charge, up to 6 hours before</li>
+          <li><span class="adire-mark" style="width:18px;height:18px;margin-top:2px;"></span> Gift vouchers available — just ask when you message</li>
+        </ul>
+      </div>
+
+      <form class="booking-form reveal" id="bookingForm">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" placeholder="Adaeze Chukwu" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" placeholder="080X XXX XXXX" required>
+        </div>
+        <div class="field">
+          <label for="service">Treatment</label>
+          <select id="service" required>
+            <option value="" disabled selected>Select a treatment</option>
+            <option>Signature Amara Massage — 60 min</option>
+            <option>Deep Tissue Massage — 90 min</option>
+            <option>Hot Stone Therapy — 75 min</option>
+            <option>Aromatherapy Facial — 45 min</option>
+            <option>Body Scrub &amp; Wrap — 60 min</option>
+            <option>Couples Ritual — 90 min</option>
+            <option>Mani-Pedi Refresh — 50 min</option>
+            <option>Head &amp; Scalp Massage — 30 min</option>
+            <option>Not sure yet — advise me</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="field full">
+          <label for="time">Preferred time</label>
+          <input type="time" id="time">
+        </div>
+        <div class="field full">
+          <label for="notes">Anything we should know?</label>
+          <textarea id="notes" placeholder="Allergies, pressure preference, first visit, etc."></textarea>
+        </div>
+        <div class="full">
+          <button type="submit" class="wa-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.38A9.94 9.94 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.59 0-3.06-.46-4.31-1.25l-.31-.18-3.12.82.83-3.04-.2-.31A8.18 8.18 0 0 1 3.8 12c0-4.55 3.7-8.24 8.24-8.24 4.55 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.88 2.4 1 2.56.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>
+            Send booking on WhatsApp
+          </button>
+        </div>
+        <p class="form-note">This opens WhatsApp with your details filled in — nothing is booked until you press send there and we confirm.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="eyebrow reveal">Good to know</span>
+    <h2 class="reveal" style="margin:16px 0 40px; font-size: clamp(1.9rem,3vw,2.6rem);">Frequently asked questions</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">What should I bring? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Just yourself. We provide robes, slippers, and towels. If you have a preferred oil or fragrance sensitivity, mention it when you book.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I walk in without booking? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Walk-ins are welcome if a room is free, but we recommend booking on WhatsApp at least a few hours ahead to guarantee your preferred time and therapist.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's your cancellation policy? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Free rescheduling up to 6 hours before your appointment. Cancellations within 6 hours are subject to a 50% charge to compensate your reserved therapist's time.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you offer gift vouchers? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — any treatment or a fixed Naira amount can be gifted. Message us on WhatsApp and we'll send a printable voucher the same day.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="adire-mark" aria-hidden="true"></span>Amara Spa &amp; Wellness</div>
+        <p style="max-width:260px;">A quiet ritual space in Lekki Phase 1, Lagos — booked entirely over WhatsApp.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>12 Admiralty Way<br>Lekki Phase 1, Lagos</p>
+        <p><a href="#">Get directions</a></p>
+      </div>
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <div class="hours-row"><span>Mon – Fri</span><span>9am – 8pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9am – 9pm</span></div>
+        <div class="hours-row"><span>Sunday</span><span>11am – 6pm</span></div>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <p><a href="https://wa.me/2348000000000" target="_blank" rel="noopener">WhatsApp: +234 800 000 0000</a></p>
+        <p><a href="#">Instagram</a> · <a href="#">TikTok</a></p>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© 2026 Amara Spa &amp; Wellness. All rights reserved.</span>
+      <span>Site by PrimeFlow Technology</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP BUTTON ============ -->
+<a class="wa-float" href="https://wa.me/2348000000000?text=Hi%20Amara%20Spa%2C%20I%27d%20like%20to%20book%20a%20treatment." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.38A9.94 9.94 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.59 0-3.06-.46-4.31-1.25l-.31-.18-3.12.82.83-3.04-.2-.31A8.18 8.18 0 0 1 3.8 12c0-4.55 3.7-8.24 8.24-8.24 4.55 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.88 2.4 1 2.56.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>
+</a>
+
+<script>
+  // ===== CONFIG: replace with the spa's real WhatsApp number (country code + number, no + or spaces) =====
+  const WHATSAPP_NUMBER = '2348000000000'; // TODO: Amara Spa to replace with their actual WhatsApp business number
+
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => o.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Booking form -> WhatsApp deep link
+  const form = document.getElementById('bookingForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const notes = document.getElementById('notes').value.trim();
+
+    let message = `Hi Amara Spa, I'd like to book a treatment.\n\n`;
+    message += `Name: ${name}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Treatment: ${service}\n`;
+    if (date) message += `Preferred date: ${date}\n`;
+    if (time) message += `Preferred time: ${time}\n`;
+    if (notes) message += `Notes: ${notes}\n`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
