@@ -284,6 +284,24 @@
     -webkit-mask-image: linear-gradient(200deg, black 15%, transparent 65%);
     mask-image: linear-gradient(200deg, black 15%, transparent 65%);
   }
+  .phil-art img{
+  position:relative; z-index:1;
+  width:100%; height:100%; object-fit:cover; object-position:center;
+}
+.phil-art .photo-placeholder{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 14px; text-align:center; padding: 40px;
+  color: rgba(19,29,51,0.75);
+}
+.phil-art .icon{
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid rgba(19,29,51,0.4);
+  display:flex; align-items:center; justify-content:center;
+}
+.phil-art .photo-placeholder p{ font-size: 0.85rem; max-width: 220px; line-height:1.5; }
+.phil-art .photo-placeholder code{ background: rgba(19,29,51,0.12); padding: 2px 8px; border-radius: 6px; font-size: 0.78rem; }
+.phil-art.has-image .photo-placeholder{ display:none; }
   .phil-text h2{ font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 16px 0 22px; }
   .phil-text p{ color: var(--ink-soft); margin-bottom: 18px; max-width: 560px; }
   .phil-signature{ font-family:'Fraunces', serif; font-style: italic; color: var(--indigo); margin-top: 20px; }
@@ -534,14 +552,13 @@
         <div class="photo-frame" id="heroPhotoFrame">
           <!-- Replace hero-massage.jpg with your own photo, keeping the same filename,
                or update the src below to match your file name. -->
-          <img src="hero-massage.jpg" alt="A client receiving a relaxing massage at Amara Spa"
+          <img src="images/woman_receiving_spa_treatmeant_1.jpeg" alt="A client receiving a relaxing massage at Amara Spa"
                onerror="this.style.display='none'; document.getElementById('heroPhotoFrame').classList.remove('has-image');"
                onload="document.getElementById('heroPhotoFrame').classList.add('has-image');">
           <div class="photo-placeholder">
             <div class="icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
             </div>
-            <p>Add a massage photo here — save it as <code>hero-massage.jpg</code> next to this HTML file.</p>
           </div>
         </div>
       </div>
@@ -563,7 +580,16 @@
 <section class="philosophy" id="philosophy">
   <div class="wrap">
     <div class="phil-grid">
-      <div class="phil-art reveal" aria-hidden="true"></div>
+      <div class="phil-art reveal" id="philArt">
+  <img src="images/man_receiving_spa_treatmeant_1.jpeg" alt="Amara Spa treatment room and botanicals"
+       onerror="this.style.display='none'; document.getElementById('philArt').classList.remove('has-image');"
+       onload="document.getElementById('philArt').classList.add('has-image');">
+  <div class="photo-placeholder">
+    <div class="icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
+    </div>
+  </div>
+</div>
       <div class="phil-text reveal">
         <span class="eyebrow">Our philosophy</span>
         <h2>Care that moves at the pace of the body, not the clock.</h2>
